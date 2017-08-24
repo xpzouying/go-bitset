@@ -1,5 +1,7 @@
 # go-bitset
 
+[![Build Status](https://travis-ci.org/xpzouying/go-bitset.svg?branch=master)](https://travis-ci.org/xpzouying/go-bitset)
+
 Bitset in go way.
 
 
