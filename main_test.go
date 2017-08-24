@@ -34,27 +34,48 @@ func assertError(t *testing.T, err, expErr error) {
 	}
 }
 
-func TestSetterAndGetter(t *testing.T) {
-	bs := BitSet{}
+func TestGetAndSetArray1(t *testing.T) {
+	bs := NewBitSet(64)
 
 	err := bs.Set(4)
 	assertNil(t, err)
-
-	err = bs.Set(30)
+	err = bs.Set(0)
+	assertNil(t, err)
+	err = bs.Set(63)
 	assertNil(t, err)
 
-	ok := bs.Get(2)
-	assertFalse(t, ok)
+	b, err := bs.Get(4)
+	assertNil(t, err)
+	assertTrue(t, b)
+	b, err = bs.Get(0)
+	assertNil(t, err)
+	assertTrue(t, b)
+	b, err = bs.Get(63)
+	assertNil(t, err)
+	assertTrue(t, b)
+}
 
-	ok = bs.Get(4)
-	assertTrue(t, ok)
+func TestGetAndSetArray2(t *testing.T) {
+	bs := NewBitSet(65)
 
-	ok = bs.Get(30)
-	assertTrue(t, ok)
+	err := bs.Set(64)
+	assertNil(t, err)
+
+	b, err := bs.Get(64)
+	assertNil(t, err)
+	assertTrue(t, b)
+}
+
+func TestGetNil(t *testing.T) {
+	bs := NewBitSet(10)
+
+	b, err := bs.Get(2)
+	assertNil(t, err)
+	assertFalse(t, b)
 }
 
 func TestSetOutOfRange(t *testing.T) {
-	bs := BitSet{}
+	bs := NewBitSet(64)
 	err := bs.Set(64)
 	assertNotNil(t, err)
 	assertError(t, err, ErrOutOfRange)
