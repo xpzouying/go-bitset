@@ -7,6 +7,10 @@ Bitset in go way.
 
 ## Test
 
+NOTE: Testing is only support `go1.9`. If you want testing this pkg in the lower go env, please remove t.Helper() first.
+
+More detail information for `T.Helper()` (release in Go1.9), [T.Helper](https://golang.org/pkg/testing/#T.Helper)
+
 Run testcase: `go test -v`
 
 
